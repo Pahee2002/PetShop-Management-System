@@ -1,0 +1,327 @@
+/* =========================================================
+   EDIT PRODUCT PAGE
+   Additional CSS
+   Works with the existing PetCare style.css
+========================================================= */
+
+
+/* =========================================================
+   EDIT PRODUCT AUTH CARD
+========================================================= */
+
+.auth-card form {
+    width: 100%;
+}
+
+
+/* =========================================================
+   TEXTAREA
+========================================================= */
+
+.description-input {
+    width: 100%;
+    min-height: 140px;
+
+    padding: 15px 18px;
+
+    border: 2px solid #e5e5e5;
+    border-radius: 16px;
+
+    background: #fff;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    color: #222;
+
+    resize: vertical;
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+.description-input:focus {
+    border-color: #ff6845;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 104, 69, 0.10);
+}
+
+.description-input::placeholder {
+    color: #999;
+}
+
+
+/* =========================================================
+   IMAGE UPLOAD BOX
+========================================================= */
+
+.image-upload-box {
+    width: 100%;
+
+    padding: 20px;
+
+    border: 2px solid #e5e5e5;
+    border-radius: 16px;
+
+    background: #fff;
+
+    box-sizing: border-box;
+}
+
+
+/* =========================================================
+   IMAGE SUB LABEL
+========================================================= */
+
+.sub-label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+
+    color: #333;
+}
+
+
+/* =========================================================
+   FILE UPLOAD
+========================================================= */
+
+.image-upload-box input[type="file"] {
+    width: 100%;
+
+    padding: 12px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    box-sizing: border-box;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 14px;
+
+    background: #fff;
+
+    cursor: pointer;
+}
+
+
+/* =========================================================
+   FILE INPUT HOVER
+========================================================= */
+
+.image-upload-box input[type="file"]:hover {
+    border-color: #ff6b35;
+}
+
+
+/* =========================================================
+   OR TEXT
+========================================================= */
+
+.or-text {
+    text-align: center;
+
+    margin: 18px 0;
+
+    font-weight: 700;
+
+    color: #999;
+}
+
+
+/* =========================================================
+   IMAGE URL INPUT
+========================================================= */
+
+.image-url-input {
+    width: 100%;
+
+    padding: 14px 16px;
+
+    border: 2px solid #e5e5e5;
+    border-radius: 12px;
+
+    font-family: 'Nunito', sans-serif;
+    font-size: 15px;
+
+    box-sizing: border-box;
+
+    outline: none;
+
+    transition: 0.3s ease;
+}
+
+.image-url-input:focus {
+    border-color: #ff6845;
+
+    box-shadow:
+        0 0 0 3px rgba(255, 104, 69, 0.10);
+}
+
+.image-url-input::placeholder {
+    color: #999;
+}
+
+
+/* =========================================================
+   IMAGE HELP TEXT
+========================================================= */
+
+.image-help {
+    margin-top: 12px;
+    margin-bottom: 0;
+
+    font-size: 13px;
+
+    color: #777;
+
+    line-height: 1.5;
+}
+
+
+/* =========================================================
+   CURRENT IMAGE
+========================================================= */
+
+.current-image {
+    width: 150px;
+    height: 150px;
+
+    object-fit: cover;
+
+    border-radius: 15px;
+
+    margin-top: 10px;
+
+    border: 2px solid #eee;
+
+    box-shadow:
+        0 5px 15px rgba(0, 0, 0, 0.08);
+
+    transition: 0.3s ease;
+}
+
+.current-image:hover {
+    transform: scale(1.03);
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =========================================================
+   SUCCESS MESSAGE
+========================================================= */
+
+.success-message {
+    background: #e9f9ef;
+
+    color: #187a3d;
+
+    border: 1px solid #b8e8c8;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   ERROR MESSAGE
+========================================================= */
+
+.error-message {
+    background: #fff0f0;
+
+    color: #c62828;
+
+    border: 1px solid #f0b5b5;
+
+    padding: 12px 15px;
+
+    border-radius: 10px;
+
+    margin-bottom: 20px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   UPLOAD / URL SECTIONS
+========================================================= */
+
+.upload-section,
+.url-section {
+    width: 100%;
+}
+
+
+/* =========================================================
+   EDIT PRODUCT BUTTONS
+========================================================= */
+
+.auth-card form > .btn {
+    margin-top: 10px;
+}
+
+
+/* Back Button */
+
+.auth-card form a.btn {
+    background: #555 !important;
+    color: white !important;
+}
+
+.auth-card form a.btn:hover {
+    background: #444 !important;
+    color: white !important;
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+    .auth-card {
+        width: 100%;
+    }
+
+    .image-upload-box {
+        padding: 15px;
+    }
+
+    .current-image {
+        width: 120px;
+        height: 120px;
+    }
+
+    .description-input {
+        min-height: 120px;
+        font-size: 15px;
+    }
+
+    .image-url-input {
+        font-size: 14px;
+        padding: 12px 14px;
+    }
+
+    .image-help {
+        font-size: 12px;
+    }
+
+    .auth-card form > .btn {
+        width: 100%;
+        margin-left: 0 !important;
+        margin-top: 10px;
+    }
+}
