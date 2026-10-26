@@ -1,25 +1,36 @@
+
 <?php
 
 session_start();
+
 require_once "config/db.php";
 
 if (!isset($_SESSION["user_id"])) {
+
     header("Location: login.php");
+
     exit;
+
 }
 
-if ($_SESSION["user_role"] != "admin") {
+if (!isset($_SESSION["user_role"]) || $_SESSION["user_role"] != "admin") {
+
     header("Location: customer_dashboard.php");
+
     exit;
+
 }
 
 $result = $conn->query(
+
     "SELECT * FROM categories ORDER BY id DESC"
+
 );
 
 ?>
 
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -40,27 +51,36 @@ $result = $conn->query(
 <nav class="navbar">
 
     <a href="admin_dashboard.php" class="logo">
+
         🐾 Pet<span>Care</span>
+
     </a>
 
     <ul class="nav-links">
 
         <li>
+
             <a href="admin_dashboard.php">
+
                 Dashboard
+
             </a>
+
         </li>
 
         <li>
+
             <a href="logout.php" class="login-btn">
+
                 LOGOUT
+
             </a>
+
         </li>
 
     </ul>
 
 </nav>
-
 
 <div class="dashboard">
 
@@ -69,16 +89,18 @@ $result = $conn->query(
         <h1>🗂️ Category Management</h1>
 
         <p>
+
             View and manage all categories in your PetCare shop.
+
         </p>
 
     </div>
 
-
     <a href="add_category.php" class="btn add-btn">
-        ➕ Add New Category
-    </a>
 
+        ➕ Add New Category
+
+    </a>
 
     <div class="category-table-wrapper">
 
@@ -89,11 +111,17 @@ $result = $conn->query(
                 <thead>
 
                     <tr>
+
                         <th>ID</th>
+
                         <th>Category Name</th>
+
                         <th>Description</th>
+
                         <th>Created Date</th>
+
                         <th>Action</th>
+
                     </tr>
 
                 </thead>
@@ -105,58 +133,101 @@ $result = $conn->query(
                         <tr>
 
                             <td>
+
                                 <?php echo $category["id"]; ?>
+
                             </td>
 
                             <td>
+
                                 <strong>
+
                                     <?php
+
                                     echo htmlspecialchars(
+
                                         $category["name"]
+
                                     );
+
                                     ?>
+
                                 </strong>
+
                             </td>
 
                             <td>
+
                                 <?php
+
                                 echo htmlspecialchars(
+
                                     $category["description"]
+
                                 );
+
                                 ?>
+
                             </td>
 
                             <td>
+
                                 <?php
+
                                 echo date(
+
                                     "d M Y",
+
                                     strtotime(
+
                                         $category["created_at"]
+
                                     )
+
                                 );
+
                                 ?>
+
                             </td>
 
                             <td>
 
                                 <a
-                                    href="edit_category.php?id=<?php echo $category["id"]; ?>"
+
+                                    href="edit_category.php?id=<?php echo (int) $category["id"]; ?>"
+
                                     class="edit-btn"
+
                                 >
+
                                     ✏️ Edit
+
                                 </a>
 
                                 <button
+
                                     type="button"
+
                                     class="delete-btn"
-                                    onclick="openDeletePopup(
-                                        <?php echo $category["id"]; ?>,
-                                        '<?php echo htmlspecialchars(
-                                            addslashes($category["name"])
-                                        ); ?>'
-                                    )"
+
+                                    onclick='openDeletePopup(
+
+                                        <?php echo (int) $category["id"]; ?>,
+
+                                        <?php echo json_encode(
+
+                                            $category["name"],
+
+                                            JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP
+
+                                        ); ?>
+
+                                    )'
+
                                 >
+
                                     🗑️ Delete
+
                                 </button>
 
                             </td>
@@ -176,7 +247,9 @@ $result = $conn->query(
                 <h3>🐾 No Categories Yet</h3>
 
                 <p>
+
                     Add your first category to the shop.
+
                 </p>
 
             </div>
@@ -188,21 +261,26 @@ $result = $conn->query(
 </div>
 
 
-
-
 <div
+
     class="popup-overlay"
+
     id="deletePopup"
+
 >
 
     <div class="delete-popup">
 
         <div class="delete-icon">
+
             🗑️
+
         </div>
 
         <h2>
+
             Delete Category?
+
         </h2>
 
         <p>
@@ -217,34 +295,50 @@ $result = $conn->query(
 
         </p>
 
-
         <div class="popup-buttons">
 
             <button
+
                 type="button"
+
                 class="cancel-btn"
+
                 onclick="closeDeletePopup()"
+
             >
+
                 Cancel
+
             </button>
 
-
             <form
+
                 method="POST"
+
                 action="delete_category.php"
+
             >
 
                 <input
+
                     type="hidden"
+
                     name="id"
+
                     id="deleteCategoryId"
+
                 >
 
                 <button
+
                     type="submit"
+
                     class="confirm-delete-btn"
+
                 >
+
                     Yes, Delete
+
                 </button>
 
             </form>
@@ -261,15 +355,21 @@ $result = $conn->query(
 function openDeletePopup(id, name) {
 
     document.getElementById(
+
         "deleteCategoryId"
+
     ).value = id;
 
     document.getElementById(
+
         "categoryName"
+
     ).textContent = name;
 
     document.getElementById(
+
         "deletePopup"
+
     ).classList.add("show");
 
 }
@@ -278,28 +378,37 @@ function openDeletePopup(id, name) {
 function closeDeletePopup() {
 
     document.getElementById(
+
         "deletePopup"
+
     ).classList.remove("show");
 
 }
 
 
 document.getElementById(
+
     "deletePopup"
+
 ).addEventListener(
+
     "click",
+
     function(event) {
 
         if (event.target === this) {
+
             closeDeletePopup();
+
         }
 
     }
+
 );
 
 </script>
 
-
 </body>
 
 </html>
+
